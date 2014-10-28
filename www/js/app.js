@@ -1,6 +1,6 @@
 angular.module('ionicApp', [
     'ionic',
-    'ui.router',
+    'ui.router'
     ])
 
     .config(function($stateProvider, $urlRouterProvider) {
@@ -20,6 +20,7 @@ angular.module('ionicApp', [
                     }
                 }
             })
+            //parent categories
             .state('app.category', {
                 url: '/category/:categoryId',
                 views: {
@@ -30,25 +31,21 @@ angular.module('ionicApp', [
 
                 }
             })
+            //sub categories - pass through the parent and the sub cat id
+            .state('app.sub', {
+                url:'/sub/:categoryId/:subId',
+                views: {
+                    'appContent' : {
+                        templateUrl: "subcategory.html",
+                        controller: "SubController"
+                    }
+                }
+            })
 
         $urlRouterProvider.otherwise("/app/home");
     })
+;
 
-    .directive("categoryPage", function() {
-        return {
-            //allows transfer of parent scope variables
-            scope: true,
-            restrict : "E",
-            templateUrl : "partials/category.html"
-        }
-    })
-
-    .directive("homeTemplate", function() {
-        return {
-            restrict : "E",
-            templateUrl : "partials/home.html"
-        }
-    });
 
 
 //var app = angular.module('ionicApp', ['ionic']);

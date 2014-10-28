@@ -8,8 +8,8 @@
 
 <p> We are here id:{{categoryId}}</p>
        <p>This is a list</p>
-        <ul>
-            <li ng-repeat="category in categories">
-                {{category.name}}
-            </li>
-        </ul>
+        <ion-list>
+            <ion-item ng-repeat="category in categories">
+                <a href="#/app/sub/{{categoryId}}/{{category.id}}">ParentID = {{categoryId}} - {{category.name}} -- {{category.id}}</a>
+            </ion-item>
+        </ion-list>
