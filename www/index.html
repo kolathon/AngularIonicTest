@@ -4,10 +4,13 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
     <title>Side Menus</title>
-
+    <!-- Ionic Stuffs -->
     <link href="css/ionic.min.css" rel="stylesheet">
     <script src="lib/ionic/ionic.bundle.min.js"></script>
+    <!-- custom JS -->
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+
 </head>
 
 <body>
@@ -37,7 +40,7 @@
             <ion-content>
                 <ion-side ng-controller='SideController'>
                     <ul class="list">
-                        <li class="item" ng-repeat="category in categories"><a href="#category/{{category.entity_id}}">{{category.name}}</a></li>
+                        <li class="item" ng-repeat="category in categories"><a href="#/app/category/{{category.id}}">{{category.name}} - {{category.id}}</a></li>
                     </ul>
                 </ion-side>
             </ion-content>
@@ -48,10 +51,19 @@
 <script id="home.html" type="text/ng-template">
     <ion-view title="Occa-Home">
         <ion-content padding="true">
-            <ion-purchase></ion-purchase>
+            <home-template></home-template>
         </ion-content>
     </ion-view>
 </script>
+
+<script id="category.html" type="text/ng-template">
+    <ion-view title="Occa-Home">
+        <ion-content padding="true">
+            <category-page></category-page>
+        </ion-content>
+    </ion-view>
+</script>
+
 
 <script id="ionCart.html" type="text/ng-template">
     <div class="list">

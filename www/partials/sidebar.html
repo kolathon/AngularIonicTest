@@ -18,7 +18,7 @@
         <ion-content>
             <ion-side ng-controller='SideController'>
                 <ul class="list">
-                    <li class="item" ng-repeat="category in categories"><a href="#category/{{category.entity_id}}">{{category.name}}</a></li>
+                    <li class="item" ng-repeat="category in categories"><a href="#/category/{{category.entity_id}}">{{category.name}} - {{category.id}}</a></li>
                 </ul>
             </ion-side>
         </ion-content>

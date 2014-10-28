@@ -1,6 +1,6 @@
 angular.module('ionicApp', [
     'ionic',
-    'ui.router'
+    'ui.router',
     ])
 
     .config(function($stateProvider, $urlRouterProvider) {
@@ -20,53 +20,35 @@ angular.module('ionicApp', [
                     }
                 }
             })
+            .state('app.category', {
+                url: '/category/:categoryId',
+                views: {
+                    'appContent': {
+                        templateUrl: "category.html",
+                        controller: "CategoryController"
+                    }
+
+                }
+            })
 
         $urlRouterProvider.otherwise("/app/home");
     })
 
-    .controller('AppController', function($scope, $ionicSideMenuDelegate) {
-        $scope.toggleLeft = function() {
-            $ionicSideMenuDelegate.toggleLeft();
-        };
-    })
-
-    .controller("HomeController", function($scope) {
-
-    })
-
-    .controller("SideController", function($scope, $http) {
-
-
-            //lets get the categories from a JSON request
-            $http.get('http://www.occa-local.dev/appconnection/category/get/').
-                success(function (data, status, headers, config) {
-                    $scope.categories = data;
-                    $scope.loading = false;
-                }).
-                error(function (data, status, headers, config) {
-                    //log the error
-                });
-            //stringify the JSON
-            var string = JSON.stringify($scope.categories);
-            //save this locally
-            window.localStorage.setItem('categories', string);
-
-    })
-
-    .directive("ionCart", function() {
+    .directive("categoryPage", function() {
         return {
+            //allows transfer of parent scope variables
+            scope: true,
             restrict : "E",
-            templateUrl : "ionCart.html"
+            templateUrl : "partials/category.html"
         }
     })
 
-    .directive("ionPurchase", function() {
+    .directive("homeTemplate", function() {
         return {
             restrict : "E",
             templateUrl : "partials/home.html"
         }
     });
-
 
 
 //var app = angular.module('ionicApp', ['ionic']);

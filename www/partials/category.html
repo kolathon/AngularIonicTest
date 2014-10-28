@@ -1,7 +1,15 @@
-<div class="spinner" ng-show="loading"><img src="img/ajax-loader.gif" /><br />Loading...<br />Please Wait</div>
-<div id="categories" ng-repeat="category in categories">
-    <div class="category-container">
-        <p ng-hide="category.level"><a href="#category/{{category.entity_id}}">{{category.name}}</a></p>
-        <p ng-show="category.level"><a href="#product/{{category.entity_id}}">{{category.name}}</a></p>
-    </div>
-</div>
+<!--<div class="spinner" ng-show="loading"><img src="img/ajax-loader.gif" /><br />Loading...<br />Please Wait</div>-->
+<!--<div id="categories" ng-repeat="category in categories">-->
+    <!--<div class="category-container">-->
+        <!--<p ng-hide="category.level"><a href="#category/{{category.entity_id}}">{{category.name}}</a></p>-->
+        <!--<p ng-show="category.level"><a href="#product/{{category.entity_id}}">{{category.name}}</a></p>-->
+    <!--</div>-->
+<!--</div>-->
+
+<p> We are here id:{{categoryId}}</p>
+       <p>This is a list</p>
+        <ul>
+            <li ng-repeat="category in categories">
+                {{category.name}}
+            </li>
+        </ul>
