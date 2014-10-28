@@ -1,0 +1,7 @@
+<div class="spinner" ng-show="loading">This is loading</div>
+<div id="products-container">
+    <div class="product-container" ng-repeat="product in products">
+        <p><a href="#detail/{{product.entity_id}}"{{product.name}}</p>
+        <p>{{product.price | currency:"£"}}</p>
+    </div>
+</div>

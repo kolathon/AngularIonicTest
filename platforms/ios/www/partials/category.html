@@ -1,0 +1,7 @@
+<div class="spinner" ng-show="loading"><img src="img/ajax-loader.gif" /><br />Loading...<br />Please Wait</div>
+<div id="categories" ng-repeat="category in categories">
+    <div class="category-container">
+        <p ng-hide="category.level"><a href="#category/{{category.entity_id}}">{{category.name}}</a></p>
+        <p ng-show="category.level"><a href="#product/{{category.entity_id}}">{{category.name}}</a></p>
+    </div>
+</div>
