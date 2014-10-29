@@ -1,7 +1,10 @@
-<div class="spinner" ng-show="loading"><img src="img/ajax-loader.gif" /><br />Loading...<br />Please Wait</div>
+<!--<div class="spinner" ng-show="loading"><img src="img/ajax-loader.gif" /><br />Loading...<br />Please Wait</div>-->
 <div id="products-container">
-    <div class="product-container" ng-repeat="product in products">
-        <p><a href="#detail/{{product.entity_id}}">{{product.name}}<a/></p>
-        <p>{{product.price | currency:"£"}}</p>
+    <p>{{category.name}}</p>
+    <div class="list" ng-repeat="product in category.products">
+        <a class="item item-thumbnail-left" href="#/app/detail/{{product.id}}">
+            <p>{{product.name}}</p>
+            <p>{{product.price | currency:"£"}}</p>
+        </a>
     </div>
 </div>

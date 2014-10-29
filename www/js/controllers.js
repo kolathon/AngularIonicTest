@@ -38,8 +38,6 @@ angular.module('ionicApp')
     })
     //sub category controller
     .controller("SubController", function($scope, $http, $stateParams){
-        alert($stateParams.categoryId);
-        alert($stateParams.subId);
         //get the category information from the JSON stored
         var categories = JSON.parse(localStorage.getItem('categories'));
         var subID = $stateParams.subId;
@@ -48,20 +46,65 @@ angular.module('ionicApp')
     })
     //controller for the side navigation bar
     .controller("SideController", function($scope, $http) {
-        //lets get the categories from a JSON request
-        $http.get('http://www.occa-local.dev/appconnection/category/get/').
-            success(function (data, status, headers, config) {
-                $scope.categories = data;
-                $scope.loading = false;
-                //stringify the JSON
+        if (localStorage.getItem('categories')) {
+            $scope.categories = JSON.parse(localStorage.getItem('categories'));
+        } else {
+            //lets get the categories from a JSON request
+            $http.get('http://www.occa-local.dev/appconnection/category/get/').
+                success(function (data, status, headers, config) {
+                    $scope.categories = data;
+                    $scope.loading = false;
+                    //stringify the JSON
 
-            }).
-            error(function (data, status, headers, config) {
-                //log the error
-            });
+                }).
+                error(function (data, status, headers, config) {
+                    //log the error
+                });
 
-        //save this locally
+            //close the left bar
+            //$scope.toggleLeft = function() {
+            //    $ionicSideMenuDelegate.toggleLeft();
+            //};
+        }
     })
+    //Product List Controller
+    .controller("ListController", function($scope, $http, $stateParams) {
+        //save this information locally - it will speed up product load and category load if a customer switches between products
 
+        //check if there are some saved products
+        if(localStorage.getItem('products')){
+            //check whether the ID on the JSON correlates to the one we want
+            var products = JSON.parse(localStorage.getItem('products'));
+            if(products.id === $stateParams.categoryId){
+                $scope.category = products;
+                $scope.loading = false;
+            }
+        }
+        if(typeof $scope.category === "undefined"){
+            //make sure there is a category ID set
+            $scope.categoryId = $stateParams.categoryId;
+            //AJAX for JSON
+            $http.get('http://www.occa-local.dev/appconnection/product/get/id/' + $scope.categoryId)
+                .success(function (data, status, headers, config) {
+                    $scope.category = data;
+                    var string = JSON.stringify(data);
+                    //set this in local storage
+                    localStorage.setItem('products', string);
+                    $scope.loading = false;
+                })
+                .error(function (data, status, headers, config) {
+                    //some error function
+                    alert('there was a problem with the list controller')
+                });
+        }
+
+    })
+    //Product Detail Controller
+    .controller("ProductController", function($scope, $stateParams) {
+        //get the details from the localStorage
+        var category = JSON.parse(localStorage.getItem('products'));
+        var productId = $stateParams.productId;
+        $scope.product = category.products[productId];
+    })
 
 ;

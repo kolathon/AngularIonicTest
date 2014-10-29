@@ -1,4 +1,12 @@
 angular.module('ionicApp')
+    //sidebar
+    .directive("sidebarTemplate", function(){
+        return{
+            scope: true,
+            restrict: "E",
+            templateUrl : "partials/sidebar.html"
+        }
+    })
     //home page template
     .directive("homeTemplate", function() {
         return {
@@ -21,6 +29,22 @@ angular.module('ionicApp')
             scope: true,
             restrict: "E",
             templateUrl : "partials/subcategory.html"
+        }
+    })
+    //product list
+    .directive("listPage", function() {
+        return{
+            scope: true,
+            restrict: "E",
+            templateUrl : "partials/list.html"
+        }
+    })
+    //product detail
+    .directive("productPage", function() {
+        return{
+            scope: true,
+            restrict: "E",
+            templateUrl : "partials/product.html"
         }
     })
 

@@ -2,6 +2,6 @@
 
 <ion-list>
     <ion-item ng-repeat="category in categories">
-        {{category.name}}
+        <a href="#/app/list/{{category.id}}">{{category.name}}</a>
     </ion-item>
 </ion-list>
